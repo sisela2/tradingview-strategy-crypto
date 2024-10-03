@@ -7,7 +7,7 @@ tradingview strategy crypto only - 加密货币量化交易策略 Tradingview pi
 * 此策略是Tradingview脚本策略，可以直接在TV平台回测，回测环境：**K线放大镜开启(不开等于自己骗自己，对某些策略来说结果没有任何参考价值)**，手续费0.05%，多空均开，但同时最多只开一个单。
 * 回测结论如下：
   + 经过调参测试，发现只适用于加密货币类别，即24小时开市高波动型趋势品种。其他品种不适用。这是由策略本身的逻辑和参数决定的。
-  + 太大的周期可能会导致结果失真、交易频率降低，太小的周期会导致手续费增加，因此这里使用的是2h周期，交易频率适中，一个月交易次数在几次到十几次之间，回测了几十个市值、人气排前的币种，BTC,ETH,SOL,BNB,BCH,PEPE,SHIB,FIL,UMA,BSV...不列举了，几十个也足够了。
+  + 太大的周期可能会导致结果失真、交易频率降低，太小的周期可能会导致手续费增加，这里使用的是2h周期，交易频率适中，一个月交易次数在几次到十几次之间，回测了几十个市值、人气排前的币种，BTC,ETH,SOL,BNB,BCH,PEPE,SHIB,FIL,UMA,BSV...不列举了，几十个也足够了。
   + 下图是2020-至今的其中几个币种的2h回测结果：开单额固定便于查看亏损情况
 ![图片](https://github.com/user-attachments/assets/c320a5d9-8647-4eb3-98b9-700b65cd1a88)
 ![图片](https://github.com/user-attachments/assets/26123645-79c3-47a2-9608-cf7bb5580b49)
@@ -16,7 +16,10 @@ tradingview strategy crypto only - 加密货币量化交易策略 Tradingview pi
 ![图片](https://github.com/user-attachments/assets/fd176ff6-591d-410c-b1ef-fa04d0ae879e)
 ![图片](https://github.com/user-attachments/assets/86439b8a-7ee5-4241-b3e2-612f97f5a4bb)
 
+介绍K线放大镜：https://www.tradingview.com/blog/cn/accurate-backtesting-with-bar-magnifier-31746/
 起初我是根本不相信这样的结果的，但实际了解pine脚本的运行机制和K线放大镜的作用后，我尝试着进行了手动测试比对、前向测试等，由于2h的K线放大镜精度是5m，而我的参数设置是0.5%，因此只要不是在1m精度的k线上产生了离谱的上下来回变化超过0.5%以上都是真实的结果，具体不说明了，简而言之我手动比对了一些数据大部分是真实的可执行的，只有少数波动比较离谱，比如上图的一笔赚10%以上的基本都是假的单子，1m内波动1%以上这种就无法确保真实性。我已经接到平台上自动交易，等一段时间查看实际结果。这一步如果比较符合实际回测结果那么基本上可以认为策略是可行的。
++ 此外，2h周期对应的放大镜是5m，因此仍然有一定误差存在，可以尝试15m、30m，效果都不错
+![图片](https://github.com/user-attachments/assets/4f46ec8d-4610-4768-834a-f2b238fdcca8)
 
 OKX可以无缝接入TV的策略，观察实际测试结果。如果需要此策略，欢迎联系我试用 leifetbastidblpfci@gmail.com ，我开放权限你就可以自行查看回测结果、自己手动测试、前向测试等等，但无法查看源代码，到期后无法使用
 （无未来函数、重绘等自欺欺人操作，唯一的失真性源自5m以下的高波动不确定性，具体参照TV的放大镜作用）
