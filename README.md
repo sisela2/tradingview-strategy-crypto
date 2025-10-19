@@ -1,3 +1,6 @@
+# 此策略存在问题，大家不要发邮件给我了！！
+
+
 # tradingview-strategy-crypto
 tradingview strategy crypto only - 加密货币量化交易策略 Tradingview pine 脚本策略 比特币 以太坊 加密货币 自动交易 策略 机器人 binance okx 交易所 币安 欧易 Bitget 
 
